@@ -16,28 +16,32 @@ server:
     mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript
 
 mybatis:
-  config: classpath:config/mybatis/mybatis-config.xml
-  mapperLocations: classpath:config/mybatis/mapper/**/*.xml
+  config: classpath:mybatis/mybatis-config.xml
+  mapperLocations: classpath:mybatis/mapper/**/*.xml
   typeAliasesPackage: com.feifan.web.model
   checkConfigLocation: true
 
 datasource:
-  cms: aa
+  bike:
+    driverClassName: xxx
+    url: xxx
+    username: xxx
+    password: xxx
+    jmxEnabled: false
+    testWhileIdle: false
+    validationQuery: SELECT 1
+    testOnBorrow: true
+    testOnReturn: false
+    validationInterval: 30000
+    timeBetweenEvictionRunsMillis: 10000
+    maxActive: 5
+    maxIdle: 2
+    minIdle: 1
+    initialSize: 2
+    maxWait: 60000
+    removeAbandoned: true
+    removeAbandonedTimeout: 60000
+    minEvictableIdleTimeMillis: 60000
+    logAbandoned: true
+    cryptographic: false
 
----
-spring:
-  profiles: pro
-  redis:
-    host: 10.111.70.51
-    port: 7379
-    password: test
-    timeout: 100000
-    database: 1
-    pool:
-      max-active: 300
-      max-idle: 100
-      max-wait: 1000
-      min-idle: 10
-  http:
-    multipart:
-      max-file-size: 10MB

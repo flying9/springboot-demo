@@ -25,9 +25,6 @@
 					<execution>
 						<id>attach-sources</id>
 						<phase>deploy</phase>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
 					</execution>
 				</executions>
 				<configuration>
@@ -40,7 +37,6 @@
 				<version>${plugin.deploy.version}</version>
 				<configuration>
 					<skip>true</skip>
-					<encoding>${global.encoding}</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -53,9 +49,6 @@
 					<execution>
 						<id>web-server</id>
 						<phase>package</phase><!-- 绑定到 PACKAGE 生命周期阶段 -->
-						<goals>
-							<goal>single</goal><!-- 在 PACKAGE 生命周期阶段仅执行一次 -->
-						</goals>
 					</execution>
 				</executions>
 				<configuration>
@@ -105,8 +98,6 @@
 		<plugin.staging.version>1.6.7</plugin.staging.version>
 		<plugin.surefire.version>2.9</plugin.surefire.version>
 		<plugin.findbugs.version>3.0.3</plugin.findbugs.version>
-
-		<nexus.url>http://maven.hellobike.cn/nexus</nexus.url>
 
 		<com.jackson.version>2.8.1</com.jackson.version>
 		<org.springboot.version>1.4.0.RELEASE</org.springboot.version>
@@ -324,15 +315,4 @@
 		</dependency>
 	</dependencies>
 
-	<!-- 内部Maven服务器地址 -->
-	<distributionManagement>
-		<snapshotRepository>
-			<id>archjava</id>
-			<url>${nexus.url}/content/repositories/carkey-archjava-snapshots/</url>
-		</snapshotRepository>
-		<repository>
-			<id>archjava</id>
-			<url>${nexus.url}/content/repositories/carkey-archjava-release/</url>
-		</repository>
-	</distributionManagement>
 </project>

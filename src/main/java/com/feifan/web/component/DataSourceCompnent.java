@@ -1,10 +1,11 @@
 package com.feifan.web.component;
 
-import com.feifan.web.configuration.base.DataSourceConfiguration;
 import org.apache.tomcat.jdbc.pool.DataSource;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 /**
  * <p>
@@ -16,17 +17,28 @@ import org.springframework.stereotype.Component;
  * @version 1.0.0
  * @since JDK 1.8
  */
-@Component
+@Configuration
 public class DataSourceCompnent {
 
-    @Bean
-    public javax.sql.DataSource bikeDataSource(@Qualifier("bikeDataSourceConfiguration")DataSourceConfiguration dataSourceConfiguration){
-        return getDataSource(dataSourceConfiguration);
+
+    /**
+     * 默认数据源
+     * <p>
+     * 其它数据源 datasource2
+     * {@link org.apache.tomcat.jdbc.pool.DataSource} DataSource implements javax.sql.DataSource, 所以直接返回其具体实现类就好了,没必要转型
+     *
+     * @return {@link org.apache.tomcat.jdbc.pool.DataSource}
+     */
+    @Primary
+    @Bean(name = "datasource")
+    @ConfigurationProperties(prefix = "datasource.bike")
+    public DataSource dataSource() {
+        return new DataSource();
     }
 
-    private javax.sql.DataSource getDataSource(DataSourceConfiguration dataSourceConfiguration){
-        DataSource dataSource = new DataSource();
-        dataSource.setPoolProperties(dataSourceConfiguration);
-        return dataSource;
+    @Bean(name = "datasource2")
+    @ConfigurationProperties(prefix = "datasource.bike2")
+    public DataSource dataSource2() {
+        return new DataSource();
     }
 }

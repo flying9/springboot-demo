@@ -15,12 +15,17 @@ import org.springframework.context.annotation.ComponentScan;
  * @version 1.0.0
  * @since JDK 1.8
  */
+
+
+/**
+ * 移除  EnableAutoConfiguration and ComponentScan
+ * <p>
+ * SpringBootApplication 已包含以上两个注解,在这里重复开启
+ */
 @SpringBootApplication
-@ComponentScan({"com.feifan.web"})
-@EnableAutoConfiguration
 public class Application {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 }

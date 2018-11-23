@@ -10,10 +10,11 @@ server:
   context-path: /springboot
   tomcat:
     uri-encoding: UTF-8
-  session-timeout: 5000
   compression:
     enabled: true
     mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript
+  session:
+    timeout: 5000
 
 mybatis:
   config: classpath:mybatis/mybatis-config.xml
@@ -23,6 +24,29 @@ mybatis:
 
 datasource:
   bike:
+    driverClassName: xxx
+    url: xxx
+    username: xxx
+    password: xxx
+    jmxEnabled: false
+    testWhileIdle: false
+    validationQuery: SELECT 1
+    testOnBorrow: true
+    testOnReturn: false
+    validationInterval: 30000
+    timeBetweenEvictionRunsMillis: 10000
+    maxActive: 5
+    maxIdle: 2
+    minIdle: 1
+    initialSize: 2
+    maxWait: 60000
+    removeAbandoned: true
+    removeAbandonedTimeout: 60000
+    minEvictableIdleTimeMillis: 60000
+    logAbandoned: true
+    cryptographic: false
+
+  bike2:
     driverClassName: xxx
     url: xxx
     username: xxx
